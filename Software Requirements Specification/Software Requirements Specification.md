@@ -68,7 +68,7 @@ Case: Save the performance metrics of the Algorithm model
 - Precondition: get the train data.
 - Postconditions: No
 
-![image-20230319162808848](.\image\image-20230319162808848.png)
+![image-20230319162808848](./image/image-20230319162808848.png)
 
 #### Basic Flow
 
@@ -106,7 +106,7 @@ Case: Save the performance metrics of the Algorithm model
 - Precondition: Algorithm developers have trained the model successfully
 - Postconditions: No
 
-![image-20230320105320243](.\image\image-20230320105320243.png)
+![image-20230320105320243](./image/image-20230320105320243.png)
 
 #### Basic Flow
 
@@ -195,7 +195,7 @@ Case: Save the performance metrics of the Algorithm model
 
 - Postconditions: When Algorithm has finished making predictions 
 
-  ![image-20230320112252556](.\image\image-20230320112252556.png)
+  ![image-20230320112252556](./image/image-20230320112252556.png)
 
 #### Basic Flow
 
@@ -238,7 +238,7 @@ Case: Save the performance metrics of the Algorithm model
 
 - Postconditions: The database has stored the performance metrics of the Algorithm model
 
-  ![image-20230320142959364](.\image\image-20230320142959364.png)
+  ![image-20230320142959364](./image/image-20230320142959364.png)
 
 #### Basic Flow
 
