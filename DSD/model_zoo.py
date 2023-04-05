@@ -5,10 +5,10 @@ import numpy as np
 import random
 import math
 
-torch.manual_seed(2021)
-torch.cuda.manual_seed_all(2021)
-np.random.seed(2021)
-random.seed(2021)
+torch.manual_seed(2023)
+torch.cuda.manual_seed_all(2023)
+np.random.seed(2023)
+random.seed(2023)
 torch.backends.cudnn.deterministic = True
 
 
