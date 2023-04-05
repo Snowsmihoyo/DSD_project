@@ -62,9 +62,7 @@ def cal_loss(pred, gold, cls_ratio=None):
     # By default, the losses are averaged over each loss element in the batch.
     loss = F.cross_entropy(pred, gold)
 
-    # torch.max(a,0) 返回每一列中最大值的那个元素，且返回索引
     pred = F.softmax(pred, dim=-1).max(1)[1]
-    # 相等位置输出1，否则0
     n_correct = pred.eq(gold)
     acc = n_correct.sum().item() / n_correct.shape[0]
 
