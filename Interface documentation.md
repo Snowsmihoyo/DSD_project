@@ -20,7 +20,7 @@ The result is returned as an integer. 1 means that the training ended correctly.
 
 The purpose of this function is to predict the current state of the user for a particular user and an array of prediction data.
 
-uid represents the number of the user, flow is a 5*7 list array representing the numerical values and the current timestamp of the six sensors in 5 frames of 1 second, opt=0 for calling the specialized model, and opt=1 for calling the generalization model.
+uid represents the number of the user, flow is a 5*55 list array representing the numerical values and the current timestamp of the six sensors in 5 frames of 1 second, opt=0 for calling the specialized model, and opt=1 for calling the generalization model.
 
 For the return values: 0-5 means six actions, negative means an exception occurred, -1 means that the specialization model is missing and the get_train function should be called, -2 means that the data is abnormal.
 
