@@ -22,7 +22,7 @@ function drawChart() {
         ['SD1', 'Software Design and model select',
             new Date(2023, 3, 31), new Date(2023, 4, 6), null, 40, 'RA1,RA2'],
         ['CODE1', 'Coding for Models and Interface',
-            new Date(2023, 4, 7), new Date(2023, 4, 16), null, 20, 'SD1'],
+            new Date(2023, 4, 7), new Date(2023, 4, 16), null, 10, 'SD1'],
         ['TEST1', 'Testing and Performance comparison of various models',
             new Date(2023, 4, 14), new Date(2023, 4, 20), null, 0, 'SD1,CODE1'],
         ['TEST2', 'System Integration Testing',
