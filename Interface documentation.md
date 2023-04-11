@@ -6,6 +6,8 @@ CUDA = 11.7
 
 pytorch =1.13.0
 
+onnxruntime=1.13.1
+
 Our AI project team provides the following interfaces:
 
 ### 1. def get_train(uid,train_file):
