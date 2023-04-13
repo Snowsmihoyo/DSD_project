@@ -6,8 +6,6 @@ CUDA = 11.7
 
 pytorch =1.13.0
 
-onnxruntime=1.13.1
-
 Our AI project team provides the following interfaces:
 
 ### 1. def get_train(uid,train_file):
@@ -35,4 +33,12 @@ uid represents the number of the user,and this function does not return a value.
 ### 4.def get_train_time(train_file):
 
 This function predicts the time to train.The input is the size of the training file and the output is the estimated time to train in seconds
+
+### 5.def get_pregress(uid,train_file):
+
+This function show the preson data Collection progress,uid represents the user id, and train_file represents the specialization data for this user（In csv format).
+
+Returns a six-tuple representing the collection progress of each tag
+
+
 
