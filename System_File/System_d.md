@@ -105,47 +105,131 @@
 
 6. External interface：
 
-   1. def get_train(uid,train_file):
+   1. ```python
+      def get_train(uid: string , train_data_set: ndarray[n,5,56],dtpye=float64) -> return acc;
+      ```
 
-   The purpose of this function is to specialize training on a specific user's data.
+   This function is to specialize training on a specific user's data.
 
-   uid represents the user id, and train_file represents the specialization data for this user（In csv format）.
+   uid represents the user id, 
 
-   The result is returned as an integer. 1 means that the training ended correctly. 0 means that the GPU is unreachable, and -1 means that the data is abnormal or corrupted.
+   and train_data_set represents the specialization data for this user. It is a ndarray and it's size is$[n*5*56]$，n means n datas,every data have 5 frames and every frame have $6*9$ sensor datas and one timestamps and one label.
 
-   2. def get_predict(uid,flow,opt):
+   When data error ,this funtion will throw Exception("data error")
 
-   The purpose of this function is to predict the current state of the user for a particular user and an array of prediction data.
+   When GPU not available,,this funtion will throw Exception("GPU error")
 
-   uid represents the number of the user, flow is a 5*55 list array representing the numerical values and the current timestamp of the six sensors in 5 frames of 1 second, opt=0 for calling the specialized model, and opt=1 for calling the generalization model.
+   Return acc, which represents the training accuracy
 
-   For the return values: 0-5 means six actions, negative means an exception occurred, -1 means that the specialization model is missing and the get_train function should be called, -2 means that the data is abnormal.
+   It is a Sample：
 
-    3.def clear(uid):
+   ```python
+   uid="zhang_asdsa"
+   train_data_set=np.array([[1.0 ,for x in range(1, 56)]*5])
+   print(get_train(uid,train_data_set))
+   #The console outputs 0.92,mean acc=92%
+   ```
+
+   2. ```python
+      def get_predict(uid :string,flow:ndarray[5,55],dtpye=float64 ,opt :int , default) -> return int
+      ```
+
+   This function is to predict the current state of the user for a particular user and an array of prediction data.
+
+   uid represents the number of the user.
+
+   flow is a ndarray and it's size is$[5*55]$，representing the numerical values of the six sensors in 5 frames of 1 second and the current timestamps , opt=0 for calling the specialized model, and opt=1 for calling the generalization model. opt is default,you can not write it and we can decide it by function self.
+
+   For the return values: 0-6 means 7 actions, negative means an exception occurred, -1 means that the specialization model is missing and the get_train function should be called, -2 means that the data is abnormal.
+
+   It is a Sample：
+
+   ```python
+   uid="zhang_asdsa"
+   flow=np.array([1.0 ,for x in range(1, 56)]*5)
+   print(get_predict(uid,flow)) # The console outputs 0, indicating that the prediction for this second is sitting,and opt is default
+   ```
+
+   3. ```python
+      def clear(uid:string): -> void
+      ```
 
    The purpose of this function is to clear the specialization model for that user.
 
    uid represents the number of the user,and this function does not return a value.
 
-   4.def get_train_time(train_file):
+   It is a Sample：
 
-   This function predicts the time to train.The input is the size of the training file and the output is the estimated time to train in seconds
+   ```python
+   uid="zhang_asdsa"
+   clear(uid) # The user specialization model is cleared
+   ```
 
-   5.def get_pregress(uid,train_file):
+   4. ```python
+      def get_train_time(train_data_set: ndarray[n,5,56],dtpye=float64) : -> int #(The return time is in seconds)
+      ```
 
-   This function show the preson data Collection progress,uid represents the user id, and train_file represents the specialization data for this user（In csv format).
+   This function predicts the time to train.The input is the train data set and it's define is same with function: get_train and the output is the estimated time to train in seconds
 
-   Returns a six-tuple representing the collection progress of each tag
+   It is a Sample：
+
+   ```python
+   uid="zhang_asdsa"
+   train_data_set=np.array([[1.0 ,for x in range(1, 56)]*5])
+   print(get_train_time(train_data_set))
+   # The console outputs 10,mean need 10 seconds to train
+   ```
+
+   5. ```python
+      def get_progress(uid:string,train_data_set: ndarray[n,5,56],dtype=float64): -> ndarray[7],dtype=float64
+      ```
+
+   This function show the preson data Collection progress,uid represents the user id, and train_data_set is same with function get_train.
+
+   Returns a seven-tuple representing the collection progress of each tag
+
+   It is a Sample：
+
+   ```python
+   uid="zhang_asdsa"
+   train_data_set=np.array(null)
+   print(get_progress(uid,train_data_set))
+   #The console outputs [0,0,0,0,0,0,0],mean every progress is 0
+   ```
 
 7. Internal interface:
 
    Since this version is delivered to the customer, this segment is not visible
 
-   /*
+   external interface have given and we only give the interface of model part,clean part and file part:
+
+   model part need have train , get and p_train part. (We don't like multiple inheritance, so we don't make it as a class,inheritance nn.Module)
+
+   ```python
+   def train(data_set:narray[n*5*55]) -> void # Initial training
+   def get(data_set:narray[n*5*55]) -> int #predict
+   def p_train(data_set:narray[n*5*55]) ->void # Incremental training
+   ```
+
+   file part：
+
+   ```python
+   def clear(uid:string) -> void 
+   #reset this model.
+   def load(uid) -> (int,model)
+   #Consider concurrency, providing generalization when this file is written
+   def update(uid,model) ->void 
+   #update this model.
+   ```
+
+   clean part:
+
+   ```python
+   def clear_data(model,data_set:narray[n*5*55]) -> (int,narray[n*5*55])
+   # int mean data is examinable,narray mean clear data.
+   ```
 
    
-
-   */
 
 8. System deployment: We will provide the compressed package, just unzip it in place.
 
