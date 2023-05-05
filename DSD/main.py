@@ -62,7 +62,9 @@ def cal_loss(pred, gold, cls_ratio=None):
     # By default, the losses are averaged over each loss element in the batch.
     loss = F.cross_entropy(pred, gold)
 
+    # torch.max(a,0) 返回每一列中最大值的那个元素，且返回索引
     pred = F.softmax(pred, dim=-1).max(1)[1]
+    # 相等位置输出1，否则0
     n_correct = pred.eq(gold)
     acc = n_correct.sum().item() / n_correct.shape[0]
 
@@ -139,7 +141,7 @@ def train_epoch(model, training_data, optimizer):
     return sum(total_loss) / len(total_loss), sum(total_acc) / len(total_acc)
 
 
-def main(i, flow_dict):
+def main(uid, flow_dict):
     log_dir = ('./lstm_attention_train/para_model_%d.pth' % i)
     f = open('lstm_attention_train/results_%d.txt' % i, 'w')
     f.write('start time = %s\n' % (time.asctime(time.localtime(time.time()))))
