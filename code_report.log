@@ -1,4 +1,4 @@
-KNN： 泛化
+KNN： generalization
               precision    recall  f1-score   support
 
          0.0       0.90      0.87      0.88       315
@@ -12,7 +12,7 @@ KNN： 泛化
     accuracy                           0.94      2220
    macro avg       0.95      0.94      0.94      2220
 weighted avg       0.94      0.94      0.94      2220
- 特化：
+ specialization：
               precision    recall  f1-score   support
 
          0.0       0.95      0.92      0.93       585
@@ -26,7 +26,7 @@ weighted avg       0.94      0.94      0.94      2220
     accuracy                           0.97      4165
    macro avg       0.97      0.98      0.98      4165
 weighted avg       0.97      0.97      0.97      4165
-SVM：泛化
+SVM：generalization
               precision    recall  f1-score   support
 
          0.0       0.97      0.95      0.96       360
@@ -40,7 +40,7 @@ SVM：泛化
     accuracy                           0.97      2220
    macro avg       0.97      0.97      0.97      2220
 weighted avg       0.97      0.97      0.97      2220
-特化
+specialization
               precision    recall  f1-score   support
 
          0.0       1.00      1.00      1.00       670
@@ -54,7 +54,7 @@ weighted avg       0.97      0.97      0.97      2220
     accuracy                           0.99      4250
    macro avg       1.00      1.00      1.00      4250
 weighted avg       0.99      0.99      0.99      4250
-LSTM：泛化
+LSTM：generalization
               precision    recall  f1-score   support
 
          0.0       0.94      0.99      0.96       350
@@ -72,7 +72,7 @@ weighted avg       0.97      0.97      0.97      2220
 tensor(97.1622, device='cuda:0')
 
 Process finished with exit code 0
-特化
+specialization
 
               precision    recall  f1-score   support
 
