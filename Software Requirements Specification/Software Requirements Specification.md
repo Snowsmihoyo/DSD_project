@@ -5,6 +5,7 @@ Revision History:
 | Date | Author | Description |
 | ---- | ------ | ----------- |
 | March 17 | Fang Hanbin | Add use cases |
+| May 7 | Fang Hanbin | Add use cases |
 
 ## Use Cases
 
@@ -21,6 +22,8 @@ Case: Algorithm prediction.
 Case: personalized  model clean.
 
 Case: Predict train time
+
+Case: Return user model state 
 
 ######Request: sever supports multiple threads the environment has a graphics card
 
@@ -241,7 +244,7 @@ Case: Predict train time
 ### Case: Predict train time
 
 - Version: 1
-- Created: March 20
+- Created: May 7
 - Authors: Fang Hanbin
 - Source: Server
 - Actors: Algorithm 
@@ -260,6 +263,35 @@ Case: Predict train time
 |                     |                            |
 |                     |                            |
 |                     |                            |
+
+#### Alternative Flow
+
+| Actor | System |
+| ----- | ------ |
+|       |        |
+
+### Case:Return user model state
+
+- Version: 1
+- Created: May 7
+- Authors: Fang Hanbin
+- Source: Server
+- Actors: Algorithm 
+- Goal:  Return user model state
+- Summary:  Predict user model state is generalization or specialization model
+- Trigger: --
+- Frequency: To be determined 
+
+####  Basic Flow
+
+| Actor                   | System                   |
+| ----------------------- | ------------------------ |
+|                         | request user model state |
+| return user model state |                          |
+|                         |                          |
+|                         |                          |
+|                         |                          |
+|                         |                          |
 
 #### Alternative Flow
 
