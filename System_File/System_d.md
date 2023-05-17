@@ -106,7 +106,7 @@
 6. External interface：
 
    1. ```python
-      def get_train(uid: string , train_data_set: ndarray[n,5,56],dtpye=float64) -> return acc;
+      def get_train(uid: string , train_data_set: ndarray[n,5,56],dtpye=float64) -> return (acc,logPath);
       ```
 
    This function is to specialize training on a specific user's data.
@@ -121,13 +121,15 @@
 
    Return acc, which represents the training accuracy
 
+   Return logPath,to mean the where is log file path.
+
    It is a Sample：
 
    ```python
    uid="zhang_asdsa"
    train_data_set=np.array([[1.0 ,for x in range(1, 56)]*5])
    print(get_train(uid,train_data_set))
-   #The console outputs 0.92,mean acc=92%
+   #The console outputs (0.92,./log/asdsad.log),mean acc=92%,and log file is in ./log/asdsad.log)
    ```
 
    2. ```python
@@ -181,12 +183,14 @@
    ```
 
    5. ```python
-      def get_progress(uid:string,train_data_set: ndarray[n,5,56],dtype=float64): -> ndarray[7],dtype=float64
+      def get_progress(uid:string,train_data_set: ndarray[n,5,56],dtype=float64): -> (ndarray[7],dtype=float64,logPath)
       ```
 
    This function show the preson data Collection progress,uid represents the user id, and train_data_set is same with function get_train.
 
    Returns a seven-tuple representing the collection progress of each tag
+
+   Return logPath,to mean the where is log file path.
 
    It is a Sample：
 
@@ -194,8 +198,26 @@
    uid="zhang_asdsa"
    train_data_set=np.array(null)
    print(get_progress(uid,train_data_set))
-   #The console outputs [0,0,0,0,0,0,0],mean every progress is 0
+   #The console outputs ([0,0,0,0,0,0,0],./log/sad.log ,mean every progress is 0 and log file is in ./log/sad.log
    ```
+
+   6.
+
+   ```python
+   def get_state(uid:string): -> int 
+   ```
+
+   This function show model data state.
+
+   uid represents the user id, and return a int number, return 1 means for this user has specialized model,and return 0 means for this user only have generalization model.
+
+   ```python
+   uid="zhang_asdsa"
+   print(get_state(uid,train_data_set))
+   #The console outputs 1,mean this user have specialized model.
+   ```
+
+   
 
 7. Internal interface:
 
